@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import io.canvas.colors.data.ScanResultData;
 import io.canvas.colors.databinding.ItemScanResultBinding;
+import io.canvas.colors.view.PairActivity;
 
 public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder> {
     private Context context;
@@ -53,6 +54,8 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
             new AlertDialog.Builder(context)
                     .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
                         //연결 작업 시~작!
+                        final PairActivity pairActivity = new PairActivity();
+                        pairActivity.startConnect(model.getMacAddress()); //PairActivity에 선택한 맥 주소 전송
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .setCancelable(false)

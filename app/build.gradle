@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "io.canvas.colors"
-        minSdkVersion 28
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -33,5 +33,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.google.android.material:material:1.0.0'
+    //BLE Manager
     implementation 'com.blakequ.androidblemanager:bluetooth-manager-lib:2.1.5'
+    //Permission
+    implementation 'gun0912.ted:tedpermission:2.2.2'
 }
