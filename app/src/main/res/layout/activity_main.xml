@@ -46,5 +46,67 @@
                 android:layout_marginTop="2dp"
                 android:background="@drawable/circle" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                </com.google.android.material.card.MaterialCardView>
+            </GridLayout>
+        </RelativeLayout>
     </LinearLayout>
 </layout>

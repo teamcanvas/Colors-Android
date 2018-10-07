@@ -49,6 +49,9 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
     public void onBindViewHolder(@NonNull ScanResultViewHolder holder, int position) {
         ScanResultData model = list.get(position);
         holder.binding.setScanResultData(model);
+        if (model.getDeviceName() == null) {
+            holder.binding.deviceName.setText("Unknown Device");
+        }
 
         holder.itemView.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
