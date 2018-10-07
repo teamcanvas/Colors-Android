@@ -33,8 +33,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.google.android.material:material:1.0.0'
-    //BLE Manager
-    //implementation 'com.blakequ.androidblemanager:bluetooth-manager-lib:2.1.5'
     //Permission
     implementation 'gun0912.ted:tedpermission:2.2.2'
     implementation "com.github.hotchemi:permissionsdispatcher:4.0.0-alpha1"

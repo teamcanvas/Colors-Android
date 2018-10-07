@@ -1,26 +1,22 @@
 package io.canvas.colors.view.adapter;
 
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
-import io.canvas.colors.data.ScanResultData;
+import io.canvas.colors.R;
 import io.canvas.colors.databinding.ItemScanResultBinding;
-import io.canvas.colors.view.PairActivity;
+import io.canvas.colors.view.DeviceControlActivity;
 
 public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder> {
-    private Context context;
     private ArrayList<BluetoothDevice> mLeDevices;
 
     public ScanResultAdapter() {
@@ -29,7 +25,7 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
     }
 
     public void addDevice(BluetoothDevice device) {
-        if(!mLeDevices.contains(device)) {
+        if (!mLeDevices.contains(device)) {
             mLeDevices.add(device);
         }
     }
@@ -43,18 +39,19 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
     }
 
     @Override
-    public int getCount() {
-        return mLeDevices.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return mLeDevices.get(i);
+    public int getItemCount() {
+        return this.mLeDevices.size();
     }
 
     @Override
     public long getItemId(int i) {
         return i;
+    }
+
+    public void removeItem(int position) {
+        mLeDevices.remove(position);
+        notifyItemChanged(position);
+        notifyItemRangeChanged(position, mLeDevices.size());
     }
 
     @NonNull
@@ -67,23 +64,29 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ScanResultViewHolder holder, int position) {
-        //TODO 이 에러 해결하. 크롬 북마크바에 추가해둠
-        ScanResultData model = list.get(position);
-        holder.binding.setScanResultData(model);
-        if (model.getDeviceName() == null) {
-            holder.binding.deviceName.setText("Unknown Device");
+        BluetoothDevice device = mLeDevices.get(position);
+        final String deviceName = device.getName();
+        if (deviceName != null && deviceName.length() > 0) {
+            holder.binding.deviceName.setText(deviceName);
+        } else {
+            holder.binding.deviceName.setText(R.string.unknown_device);
+            //holder.binding.deviceAddress.setText(device.getAddress());
         }
 
         holder.itemView.setOnClickListener(view -> {
-            new AlertDialog.Builder(context)
+            new AlertDialog.Builder(view.getContext())
                     .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
                         //연결 작업 시~작!
-                        final PairActivity pairActivity = new PairActivity();
-                        //pairActivity.startConnect(model.getMacAddress()); //PairActivity에 선택한 맥 주소 전송
+                        Intent intent = new Intent(view.getContext(), DeviceControlActivity.class);
+                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, mLeDevices.get(position).getName());
+                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, mLeDevices.get(position).getAddress());
+                        view.getContext().startActivity(intent);
+//                        final PairActivity pairActivity = new PairActivity();
+//                        pairActivity.startConnect(mLeDevices.get(position).getName(), mLeDevices.get(position).getAddress()); //PairActivity에 선택한 맥 주소 전송
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .setCancelable(false)
-                    .setMessage(list.get(position).getMacAddress() + "에 연결하시겠습니까?")
+                    .setMessage(mLeDevices.get(position).getAddress() + "에 연결하시겠습니까?")
                     .show();
         });
     }

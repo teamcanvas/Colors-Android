@@ -9,4 +9,10 @@
     <string name="ppb">ppb</string>
     <string name="co2">이산화탄소</string>
     <string name="ppm">ppm</string>
+    <string name="unknown_device">Unknown Device</string>
+
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
 </resources>
