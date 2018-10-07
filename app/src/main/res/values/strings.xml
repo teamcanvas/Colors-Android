@@ -7,4 +7,6 @@
     <string name="next">다음으로 넘어가기</string>
     <string name="tvoc">TVoC</string>
     <string name="ppb">ppb</string>
+    <string name="co2">이산화탄소</string>
+    <string name="ppm">ppm</string>
 </resources>

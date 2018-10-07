@@ -1,5 +1,6 @@
 package io.canvas.colors.view.adapter;
 
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -19,34 +21,53 @@ import io.canvas.colors.view.PairActivity;
 
 public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder> {
     private Context context;
-    private List<ScanResultData> list;
+    private ArrayList<BluetoothDevice> mLeDevices;
 
-    public ScanResultAdapter(Context context, List<ScanResultData> list) {
-        this.context = context;
-        this.list = list;
+    public ScanResultAdapter() {
+        super();
+        mLeDevices = new ArrayList<BluetoothDevice>();
+    }
+
+    public void addDevice(BluetoothDevice device) {
+        if(!mLeDevices.contains(device)) {
+            mLeDevices.add(device);
+        }
+    }
+
+    public BluetoothDevice getDevice(int position) {
+        return mLeDevices.get(position);
+    }
+
+    public void clear() {
+        mLeDevices.clear();
     }
 
     @Override
-    public int getItemCount() {
-        return this.list.size();
+    public int getCount() {
+        return mLeDevices.size();
     }
 
-    public void removeItem(int position) {
-        list.remove(position);
-        notifyItemChanged(position);
-        notifyItemRangeChanged(position, list.size());
+    @Override
+    public Object getItem(int i) {
+        return mLeDevices.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
     }
 
     @NonNull
     @Override
     public ScanResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemScanResultBinding binding = ItemScanResultBinding.inflate(layoutInflater, parent,false);
+        ItemScanResultBinding binding = ItemScanResultBinding.inflate(layoutInflater, parent, false);
         return new ScanResultViewHolder(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull ScanResultViewHolder holder, int position) {
+        //TODO 이 에러 해결하. 크롬 북마크바에 추가해둠
         ScanResultData model = list.get(position);
         holder.binding.setScanResultData(model);
         if (model.getDeviceName() == null) {
@@ -58,7 +79,7 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
                     .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
                         //연결 작업 시~작!
                         final PairActivity pairActivity = new PairActivity();
-                        pairActivity.startConnect(model.getMacAddress()); //PairActivity에 선택한 맥 주소 전송
+                        //pairActivity.startConnect(model.getMacAddress()); //PairActivity에 선택한 맥 주소 전송
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .setCancelable(false)
