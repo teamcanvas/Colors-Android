@@ -5,4 +5,6 @@
     <string name="welcome">welcome</string>
     <string name="welcome_explain">지금 바로 mintboard와\\n나의 디바이스를 연결할 수 있습니다.</string>
     <string name="next">다음으로 넘어가기</string>
+    <string name="tvoc">TVoC</string>
+    <string name="ppb">ppb</string>
 </resources>

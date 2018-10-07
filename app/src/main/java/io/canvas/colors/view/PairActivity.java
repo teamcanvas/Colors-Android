@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -67,6 +68,13 @@ public class PairActivity extends AppCompatActivity {
         mAdapter = new ScanResultAdapter(this, list);
         binding.recyclerView.setAdapter(mAdapter);
 
+        binding.fab.setEnabled(true);
+        binding.fab.setBackgroundColor(getResources().getColor(R.color.online));
+        binding.fab.setOnClickListener(view -> {
+            Intent goMainIntent = new Intent(this, MainActivity.class);
+            startActivity(goMainIntent);
+        });
+
         connectManager.addConnectStateListener((address, state) -> {
             switch (state) {
                 case CONNECTING:
@@ -74,8 +82,8 @@ public class PairActivity extends AppCompatActivity {
                     break;
                 case CONNECTED:
                     Log.d("BLE", "Connected!");
-                    binding.fab.setEnabled(true);
-                    binding.fab.setBackgroundColor(getResources().getColor(R.color.online));
+//                    binding.fab.setEnabled(true);
+//                    binding.fab.setBackgroundColor(getResources().getColor(R.color.online));
                     break;
                 case NORMAL:
                     break;
