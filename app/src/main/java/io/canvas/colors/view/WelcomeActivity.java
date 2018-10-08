@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -32,13 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @NeedsPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     void showLocation() {
-
     }
 
     @OnShowRationale({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     void showRationaleForLocation(final PermissionRequest request) {
         new AlertDialog.Builder(this)
-                .setMessage("기기를 찾기 위해 허용 ㄱ")
+                .setMessage("디바이스 검색을 위해 권한을 허용해 주시기 바랍니다.")
                 .setPositiveButton(android.R.string.ok, (dialog, button) -> request.proceed())
                 .setNegativeButton(android.R.string.cancel, (dialog, button) -> request.cancel())
                 .setCancelable(false)
@@ -47,13 +43,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @OnPermissionDenied({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     void showDeniedForLocation() {
-        Toast.makeText(this, "ㅃㅇ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "권한을 허용해 주세요.", Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @OnNeverAskAgain({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     void showNeverAskForLocation() {
-        Toast.makeText(this, "다시묻지마", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "권한 허용을 해주지 않으신다면, 서비스 이용이 불가합니다.", Toast.LENGTH_SHORT).show();
         finish();
     }
 
