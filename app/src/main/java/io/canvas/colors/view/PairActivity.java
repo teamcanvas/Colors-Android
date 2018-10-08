@@ -62,11 +62,6 @@ public class PairActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pair);
         mHandler = new Handler();
 
-        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent =
-                    new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
         // Initializes Bluetooth adapter.
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -86,6 +81,7 @@ public class PairActivity extends AppCompatActivity {
         });
 
         scanLeDevice(true);
+        //binding.animationView.playAnimation();
     }
 
     private BluetoothAdapter.LeScanCallback mLeScanCallback =

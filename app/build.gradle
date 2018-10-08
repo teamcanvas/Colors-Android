@@ -36,4 +36,7 @@ dependencies {
     //Permission
     implementation "com.github.hotchemi:permissionsdispatcher:4.0.0-alpha1"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:4.0.0-alpha1"
+
+    //lottie animation
+    implementation "com.airbnb.android:lottie:2.8.0"
 }
