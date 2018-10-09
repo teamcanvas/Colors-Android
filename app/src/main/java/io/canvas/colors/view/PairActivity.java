@@ -33,7 +33,7 @@ public class PairActivity extends AppCompatActivity {
     private Handler mHandler;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 10000;
+    private static final long SCAN_PERIOD = 5000;
 
     private ArrayList<BluetoothDevice> mLeDevices;
 
@@ -125,7 +125,4 @@ public class PairActivity extends AppCompatActivity {
         mAdapter.clear();
     }
 
-    public void startConnect(String name, String address) {
-        Log.d("ADDRESS", address);
-    }
 }
