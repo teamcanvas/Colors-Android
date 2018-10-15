@@ -151,7 +151,8 @@ public class DeviceControlActivity extends AppCompatActivity {
 
         binding.toolbar.setTitle(mDeviceName);
         binding.toolbar.setOnClickListener(view -> {
-            mBluetoothLeService.connect(mDeviceAddress);
+            Intent intent2 = new Intent(this, ConnectWifiActivity.class);
+            startActivity(intent2);
         });
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
@@ -195,7 +196,7 @@ public class DeviceControlActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.menu_connect:
                 mBluetoothLeService.connect(mDeviceAddress);
                 return true;
@@ -213,7 +214,7 @@ public class DeviceControlActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               binding.connectionState.setText(resourceId);
+                binding.connectionState.setText(resourceId);
             }
         });
     }
@@ -271,12 +272,12 @@ public class DeviceControlActivity extends AppCompatActivity {
                 this,
                 gattServiceData,
                 android.R.layout.simple_expandable_list_item_2,
-                new String[] {LIST_NAME, LIST_UUID},
-                new int[] { android.R.id.text1, android.R.id.text2 },
+                new String[]{LIST_NAME, LIST_UUID},
+                new int[]{android.R.id.text1, android.R.id.text2},
                 gattCharacteristicData,
                 android.R.layout.simple_expandable_list_item_2,
-                new String[] {LIST_NAME, LIST_UUID},
-                new int[] { android.R.id.text1, android.R.id.text2 }
+                new String[]{LIST_NAME, LIST_UUID},
+                new int[]{android.R.id.text1, android.R.id.text2}
         );
         binding.gattServicesList.setAdapter(gattServiceAdapter);
     }

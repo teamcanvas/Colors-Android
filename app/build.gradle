@@ -39,4 +39,6 @@ dependencies {
 
     //lottie animation
     implementation "com.airbnb.android:lottie:2.8.0"
+
+    //blufi library
 }

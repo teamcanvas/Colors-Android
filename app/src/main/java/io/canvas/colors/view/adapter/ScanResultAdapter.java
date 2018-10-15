@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import io.canvas.colors.R;
 import io.canvas.colors.databinding.ItemScanResultBinding;
+import io.canvas.colors.view.ConnectWifiActivity;
 import io.canvas.colors.view.DeviceControlActivity;
 
 public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder> {
@@ -77,9 +78,9 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
             new AlertDialog.Builder(view.getContext())
                     .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
                         //연결 작업 시~작!
-                        Intent intent = new Intent(view.getContext(), DeviceControlActivity.class);
-                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, mLeDevices.get(position).getName());
-                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, mLeDevices.get(position).getAddress());
+                        Intent intent = new Intent(view.getContext(), ConnectWifiActivity.class);
+                        intent.putExtra(ConnectWifiActivity.EXTRAS_DEVICE_NAME, mLeDevices.get(position).getName());
+                        intent.putExtra(ConnectWifiActivity.EXTRAS_DEVICE_ADDRESS, mLeDevices.get(position).getAddress());
                         view.getContext().startActivity(intent);
 //                        final PairActivity pairActivity = new PairActivity();
 //                        pairActivity.startConnect(mLeDevices.get(position).getName(), mLeDevices.get(position).getAddress()); //PairActivity에 선택한 맥 주소 전송

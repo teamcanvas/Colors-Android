@@ -27,6 +27,7 @@
         <activity android:name=".view.PairActivity" />
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.DeviceControlActivity" />
+        <activity android:name=".view.ConnectWifiActivity" />
         <service android:name=".service.BluetoothLeService" android:enabled="true"/>
     </application>
 
