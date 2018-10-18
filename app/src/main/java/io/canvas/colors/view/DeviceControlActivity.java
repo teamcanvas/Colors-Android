@@ -211,12 +211,7 @@ public class DeviceControlActivity extends AppCompatActivity {
     }
 
     private void updateConnectionState(final int resourceId) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                binding.connectionState.setText(resourceId);
-            }
-        });
+        runOnUiThread(() -> binding.connectionState.setText(resourceId));
     }
 
     private void displayData(String data) {

@@ -18,4 +18,5 @@
     <string name="barometer">기압계</string>
     <string name="hpa">hPa</string>
     <string name="humidity">습도</string>
+    <string name="select_wifi">select Wi-Fi</string>
 </resources>

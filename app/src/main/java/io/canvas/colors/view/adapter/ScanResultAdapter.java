@@ -82,12 +82,10 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
                         intent.putExtra(ConnectWifiActivity.EXTRAS_DEVICE_NAME, mLeDevices.get(position).getName());
                         intent.putExtra(ConnectWifiActivity.EXTRAS_DEVICE_ADDRESS, mLeDevices.get(position).getAddress());
                         view.getContext().startActivity(intent);
-//                        final PairActivity pairActivity = new PairActivity();
-//                        pairActivity.startConnect(mLeDevices.get(position).getName(), mLeDevices.get(position).getAddress()); //PairActivity에 선택한 맥 주소 전송
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .setCancelable(false)
-                    .setMessage(mLeDevices.get(position).getAddress() + "에 연결하시겠습니까?")
+                    .setMessage(mLeDevices.get(position).getName() + "에 연결하시겠습니까?")
                     .show();
         });
     }

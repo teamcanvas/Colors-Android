@@ -74,7 +74,8 @@ public class ConnectWifiActivity extends AppCompatActivity {
 
         connect(mDeviceAddress);
 
-        binding.requestBlufi.setOnClickListener(view -> {
+        //TODO 이 부분을 커스텀 다이얼로그로 띄워서 받아버리자.
+        binding.requestBlufi.setOnClickListener(view -> { //와이파이 연결 요청
             BlufiConfigureParams params = new BlufiConfigureParams();
             params.setOpMode(BlufiParameter.OP_MODE_STA);
             params.setStaSSID("Junseo's Wi-Fi Network");
@@ -135,14 +136,6 @@ public class ConnectWifiActivity extends AppCompatActivity {
                 mBlufiClient = new BlufiClient(gatt, writeCharact, notifyCharact, new BlufiCallbackMain());
 
                 gatt.setCharacteristicNotification(notifyCharact, true);
-
-                //TODO 여기 확인하면서 제작하기
-//                BlufiConfigureParams params = new BlufiConfigureParams();
-//                params.setOpMode(BlufiParameter.OP_MODE_STA);
-//                params.setStaSSID("Junseo's Wi-Fi Network");
-//                params.setStaPassword("junseo1342");
-//                mBlufiClient.configure(params);
-//                mBlufiClient.negotiateSecurity();
 
             } else {
                 Log.w(TAG, "onServicesDiscovered received: " + status);
@@ -277,7 +270,7 @@ public class ConnectWifiActivity extends AppCompatActivity {
         mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
-       // mConnectionState = STATE_CONNECTING;
+        //mConnectionState = STATE_CONNECTING;
         return true;
     }
 }
