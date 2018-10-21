@@ -1,4 +1,4 @@
-package io.canvas.colors.view;
+package io.canvas.colors.ui.activities;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -35,13 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <io.canvas.colors.view.CustomCanvasView
+            <io.canvas.colors.ui.activities.CustomCanvasView
                 android:id="@+id/asd"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_alignParentBottom="true">
 
-            </io.canvas.colors.view.CustomCanvasView>
+            </io.canvas.colors.ui.activities.CustomCanvasView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floating_action_button"

@@ -7,9 +7,30 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/requestBlufi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/requestBlufi"/>
+            android:text="Connectwifi" />
+
+        <Button
+            android:id="@+id/searchWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="searchwifi" />
+
+        <Button
+            android:id="@+id/getStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="getStatus" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 </layout>

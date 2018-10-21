@@ -19,4 +19,7 @@
     <string name="hpa">hPa</string>
     <string name="humidity">습도</string>
     <string name="select_wifi">select Wi-Fi</string>
+    <string name="search_device">디바이스 검색하기</string>
+    <string name="configure_station_wifi_scanning">검색중...</string>
+    <string name="configure_station_wifi_scanning_nothing">검색결과 없음</string>
 </resources>

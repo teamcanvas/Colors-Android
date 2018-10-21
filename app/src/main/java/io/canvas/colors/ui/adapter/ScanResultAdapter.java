@@ -1,4 +1,4 @@
-package io.canvas.colors.view.adapter;
+package io.canvas.colors.ui.adapter;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -14,8 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import io.canvas.colors.R;
 import io.canvas.colors.databinding.ItemScanResultBinding;
-import io.canvas.colors.view.ConnectWifiActivity;
-import io.canvas.colors.view.DeviceControlActivity;
+import io.canvas.colors.ui.activities.ConnectWifiActivity;
 
 public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder> {
     private ArrayList<BluetoothDevice> mLeDevices;

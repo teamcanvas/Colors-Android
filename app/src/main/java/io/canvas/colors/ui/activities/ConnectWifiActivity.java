@@ -1,4 +1,4 @@
-package io.canvas.colors.view;
+package io.canvas.colors.ui.activities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -8,18 +8,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import blufi.espressif.BlufiCallback;
 import blufi.espressif.BlufiClient;
 import blufi.espressif.params.BlufiConfigureParams;
@@ -29,8 +29,9 @@ import blufi.espressif.response.BlufiStatusResponse;
 import blufi.espressif.response.BlufiVersionResponse;
 import io.canvas.colors.BlufiConstants;
 import io.canvas.colors.R;
+import io.canvas.colors.data.WifiScanData;
 import io.canvas.colors.databinding.ActivityWifiConnectBinding;
-import io.canvas.colors.service.BluetoothLeService;
+import io.canvas.colors.ui.adapter.WifiScanAdapter;
 
 public class ConnectWifiActivity extends AppCompatActivity {
 
@@ -56,6 +57,35 @@ public class ConnectWifiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_wifi_connect);
 
+        initBluetooth();
+
+        final Intent intent = getIntent();
+        mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
+        mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        binding.recyclerView.setLayoutManager(linearLayoutManager);
+
+        //mAdapter = new WifiScanAdapter();
+        //binding.recyclerView.setAdapter(mAdapter);
+
+        connect(mDeviceAddress);
+
+        //TODO 이 부분을 커스텀 다이얼로그로 띄워서 받아버리자.
+        binding.requestBlufi.setOnClickListener(view -> { //와이파이 연결 요청
+            BlufiConfigureParams params = new BlufiConfigureParams();
+            params.setOpMode(BlufiParameter.OP_MODE_STA);
+            params.setStaSSID("Junseo's Wi-Fi Network");
+            params.setStaPassword("junseo134233");
+            mBlufiClient.configure(params);
+            mBlufiClient.negotiateSecurity();
+        });
+
+        binding.searchWifi.setOnClickListener(view -> mBlufiClient.requestDeviceWifiScan());
+        binding.getStatus.setOnClickListener(view -> mBlufiClient.requestDeviceStatus());
+    }
+
+    public void initBluetooth() {
         if (mBluetoothManager == null) {
             mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
             if (mBluetoothManager == null) {
@@ -67,22 +97,6 @@ public class ConnectWifiActivity extends AppCompatActivity {
         if (mBluetoothAdapter == null) {
             Log.e(TAG, "Unable to obtain a BluetoothAdapter.");
         }
-
-        final Intent intent = getIntent();
-        mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
-        mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
-
-        connect(mDeviceAddress);
-
-        //TODO 이 부분을 커스텀 다이얼로그로 띄워서 받아버리자.
-        binding.requestBlufi.setOnClickListener(view -> { //와이파이 연결 요청
-            BlufiConfigureParams params = new BlufiConfigureParams();
-            params.setOpMode(BlufiParameter.OP_MODE_STA);
-            params.setStaSSID("Junseo's Wi-Fi Network");
-            params.setStaPassword("junseo1342");
-            mBlufiClient.configure(params);
-            mBlufiClient.negotiateSecurity();
-        });
     }
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -165,19 +179,38 @@ public class ConnectWifiActivity extends AppCompatActivity {
     };
 
     private class BlufiCallbackMain extends BlufiCallback {
+        //        @Override
+//        public void onDeviceScanResult(BlufiClient client, int status, List<BlufiScanResult> results) {
+//            switch (status) {
+//                case STATUS_SUCCESS:
+//                    StringBuilder msg = new StringBuilder();
+//                    msg.append("Receive device scan result:\n");
+//                    for (BlufiScanResult scanResult : results) {
+//                        msg.append(scanResult.toString()).append("\n");
+//                    }
+//                    Log.d("Blufi", msg.toString());
+//                    break;
+//                default:
+//                    Log.e("Blufi", "Device scan result error");
+//                    break;
+//            }
+//        }
         @Override
         public void onDeviceScanResult(BlufiClient client, int status, List<BlufiScanResult> results) {
+            List<WifiScanData> models = new ArrayList<>();
+            // status is the result: "0" - successful, otherwise - failed.
             switch (status) {
                 case STATUS_SUCCESS:
-                    StringBuilder msg = new StringBuilder();
-                    msg.append("Receive device scan result:\n");
                     for (BlufiScanResult scanResult : results) {
-                        msg.append(scanResult.toString()).append("\n");
+                        String ssid = scanResult.getSsid(); // Obtain Wi-Fi SSID
+                        String rssi = String.valueOf(scanResult.getRssi()); // Obtain Wi-Fi RSSI
+                        Log.d("Blufi", "SSID: " + ssid + "  RSSI: " + rssi + "\n");
+                        models.add(new WifiScanData(ssid, rssi));
                     }
-                    Log.d("Blufi", msg.toString());
+                    WifiScanAdapter mAdapter = new WifiScanAdapter(getApplicationContext(), models);
+                    binding.recyclerView.setAdapter(mAdapter);
                     break;
                 default:
-                    Log.e("Blufi", "Device scan result error");
                     break;
             }
         }
@@ -242,10 +275,9 @@ public class ConnectWifiActivity extends AppCompatActivity {
      * {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
      * callback.
      */
-    public boolean connect(final String address) {
+    public void connect(final String address) {
         if (mBluetoothAdapter == null || address == null) {
             Log.w(TAG, "BluetoothAdapter not initialized or unspecified address.");
-            return false;
         }
 
         // Previously connected device.  Try to reconnect.
@@ -254,16 +286,17 @@ public class ConnectWifiActivity extends AppCompatActivity {
             Log.d(TAG, "Trying to use an existing mBluetoothGatt for connection.");
             if (mBluetoothGatt.connect()) {
                 //mConnectionState = STATE_CONNECTING;
-                return true;
             } else {
-                return false;
+                Toast.makeText(this, "연결 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
 
         final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         if (device == null) {
             Log.w(TAG, "Device not found.  Unable to connect.");
-            return false;
+            Toast.makeText(this, "연결 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+            finish();
         }
         // We want to directly connect to the device, so we are setting the autoConnect
         // parameter to false.
@@ -271,6 +304,5 @@ public class ConnectWifiActivity extends AppCompatActivity {
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
         //mConnectionState = STATE_CONNECTING;
-        return true;
     }
 }

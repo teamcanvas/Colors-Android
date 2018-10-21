@@ -1,4 +1,4 @@
-package io.canvas.colors.view;
+package io.canvas.colors.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

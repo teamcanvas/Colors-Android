@@ -1,4 +1,4 @@
-package io.canvas.colors.view;
+package io.canvas.colors.ui.activities;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -17,8 +17,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import io.canvas.colors.R;
 import io.canvas.colors.databinding.ActivityPairBinding;
-import io.canvas.colors.service.BluetoothLeService;
-import io.canvas.colors.view.adapter.ScanResultAdapter;
+import io.canvas.colors.ui.adapter.ScanResultAdapter;
 
 public class PairActivity extends AppCompatActivity {
 
@@ -40,19 +39,19 @@ public class PairActivity extends AppCompatActivity {
     private void scanLeDevice(final boolean enable) {
         if (enable) {
             // Stops scanning after a pre-defined scan period.
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mScanning = false;
-                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                }
+            mHandler.postDelayed(() -> {
+                mScanning = false;
+                mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                binding.searchDevice.setEnabled(true);
             }, SCAN_PERIOD);
 
             mScanning = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
+            binding.searchDevice.setEnabled(false);
         } else {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            binding.searchDevice.setEnabled(true);
         }
     }
 
@@ -73,11 +72,9 @@ public class PairActivity extends AppCompatActivity {
         mAdapter = new ScanResultAdapter();
         binding.recyclerView.setAdapter(mAdapter);
 
-        binding.fab.setEnabled(true);
-        binding.fab.setBackgroundColor(getResources().getColor(R.color.online));
-        binding.fab.setOnClickListener(view -> {
-            Intent goMainIntent = new Intent(this, MainActivity.class);
-            startActivity(goMainIntent);
+        binding.searchDevice.setBackgroundColor(getResources().getColor(R.color.online));
+        binding.searchDevice.setOnClickListener(view -> {
+            scanLeDevice(true);
         });
 
         scanLeDevice(true);

@@ -1,11 +1,9 @@
-package io.canvas.colors.view;
+package io.canvas.colors.ui.activities;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import io.canvas.colors.R;
 import io.canvas.colors.databinding.ActivityMainBinding;
