@@ -52,6 +52,9 @@ public class ConnectWifiActivity extends AppCompatActivity {
 
     private final static String TAG = "BLE GATT";
 
+    public static String SSID = "";
+    public static String SSID_PW = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,14 +74,11 @@ public class ConnectWifiActivity extends AppCompatActivity {
 
         connect(mDeviceAddress);
 
-        //TODO 이 부분을 커스텀 다이얼로그로 띄워서 받아버리자.
+        /**
+         * 이건 커스텀 다이얼로그로 슥삭 하는게 좋을 듯. 리스트에서 클릭했을 때 비밀번호만 받아오면 될거같음
+         */
         binding.requestBlufi.setOnClickListener(view -> { //와이파이 연결 요청
-            BlufiConfigureParams params = new BlufiConfigureParams();
-            params.setOpMode(BlufiParameter.OP_MODE_STA);
-            params.setStaSSID("Junseo's Wi-Fi Network");
-            params.setStaPassword("junseo134233");
-            mBlufiClient.configure(params);
-            mBlufiClient.negotiateSecurity();
+            connectWifi();
         });
 
         binding.searchWifi.setOnClickListener(view -> mBlufiClient.requestDeviceWifiScan());
@@ -99,6 +99,16 @@ public class ConnectWifiActivity extends AppCompatActivity {
         }
     }
 
+    public void connectWifi() {
+        Log.d("WIFICONNECT", SSID_PW);
+        BlufiConfigureParams params = new BlufiConfigureParams();
+        params.setOpMode(BlufiParameter.OP_MODE_STA);
+        params.setStaSSID(SSID);
+        params.setStaPassword(SSID_PW);
+        mBlufiClient.configure(params);
+        mBlufiClient.negotiateSecurity();
+    }
+
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
@@ -108,7 +118,6 @@ public class ConnectWifiActivity extends AppCompatActivity {
                 // Attempts to discover services after successful connection.
                 Log.i(TAG, "Attempting to start service discovery:" +
                         mBluetoothGatt.discoverServices());
-
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 Log.i(TAG, "Disconnected from GATT server.");
             }
@@ -258,6 +267,7 @@ public class ConnectWifiActivity extends AppCompatActivity {
             switch (status) {
                 case STATUS_SUCCESS:
                     Log.d("Blufi", String.format("Receive device status response:\n%s", response.generateValidInfo()));
+                    Toast.makeText(getApplicationContext(), response.generateValidInfo(), Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     Log.e("Blufi", "Device status response error");

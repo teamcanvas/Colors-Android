@@ -1,6 +1,7 @@
 package io.canvas.colors.ui.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -36,6 +37,8 @@ public class PairActivity extends AppCompatActivity {
 
     private ArrayList<BluetoothDevice> mLeDevices;
 
+    private ProgressDialog dialog;
+
     private void scanLeDevice(final boolean enable) {
         if (enable) {
             // Stops scanning after a pre-defined scan period.
@@ -43,15 +46,18 @@ public class PairActivity extends AppCompatActivity {
                 mScanning = false;
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
                 binding.searchDevice.setEnabled(true);
+                dialog.dismiss();
             }, SCAN_PERIOD);
 
             mScanning = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
             binding.searchDevice.setEnabled(false);
+            dialog.show();
         } else {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
             binding.searchDevice.setEnabled(true);
+            dialog.dismiss();
         }
     }
 
@@ -76,6 +82,10 @@ public class PairActivity extends AppCompatActivity {
         binding.searchDevice.setOnClickListener(view -> {
             scanLeDevice(true);
         });
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setMessage(getResources().getText(R.string.configure_station_wifi_scanning));
 
         scanLeDevice(true);
         //binding.animationView.playAnimation();

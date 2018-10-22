@@ -1,6 +1,7 @@
 package io.canvas.colors.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import io.canvas.colors.data.WifiScanData;
 import io.canvas.colors.databinding.ItemWifiScanBinding;
+import io.canvas.colors.ui.WifiPinDialog;
+import io.canvas.colors.ui.activities.ConnectWifiActivity;
 
 public class WifiScanAdapter extends RecyclerView.Adapter<WifiScanViewHolder> {
     private Context context;
@@ -54,6 +57,13 @@ public class WifiScanAdapter extends RecyclerView.Adapter<WifiScanViewHolder> {
     public void onBindViewHolder(@NonNull WifiScanViewHolder holder, int position) {
         WifiScanData model = list.get(position);
         holder.binding.setWifiData(model);
+
+        holder.itemView.setOnClickListener(view -> {
+            final ConnectWifiActivity connectWifiActivity = new ConnectWifiActivity();
+            ConnectWifiActivity.SSID = list.get(position).getSSID();
+            final WifiPinDialog wifiPinDialog = new WifiPinDialog(view.getContext());
+            wifiPinDialog.show();
+        });
     }
 }
 
