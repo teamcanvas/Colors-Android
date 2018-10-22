@@ -30,12 +30,12 @@ import blufi.espressif.response.BlufiVersionResponse;
 import io.canvas.colors.BlufiConstants;
 import io.canvas.colors.R;
 import io.canvas.colors.data.WifiScanData;
-import io.canvas.colors.databinding.ActivityWifiConnectBinding;
+import io.canvas.colors.databinding.ActivityWifiSearchBinding;
 import io.canvas.colors.ui.adapter.WifiScanAdapter;
 
 public class ConnectWifiActivity extends AppCompatActivity {
 
-    ActivityWifiConnectBinding binding;
+    ActivityWifiSearchBinding binding;
 
     private BlufiClient mBlufiClient;
     private BluetoothGatt mBluetoothGatt;
@@ -58,7 +58,7 @@ public class ConnectWifiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_wifi_connect);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_wifi_search);
 
         initBluetooth();
 
@@ -74,15 +74,13 @@ public class ConnectWifiActivity extends AppCompatActivity {
 
         connect(mDeviceAddress);
 
-        /**
-         * 이건 커스텀 다이얼로그로 슥삭 하는게 좋을 듯. 리스트에서 클릭했을 때 비밀번호만 받아오면 될거같음
-         */
-        binding.requestBlufi.setOnClickListener(view -> { //와이파이 연결 요청
-            connectWifi();
+        binding.connectWifi.setOnClickListener(view -> { //와이파이 연결 요청
+            if (SSID_PW.length() > 0) {
+                connectWifi();
+            } else {
+                Toast.makeText(this, "Please Input PW", Toast.LENGTH_SHORT).show();
+            }
         });
-
-        binding.searchWifi.setOnClickListener(view -> mBlufiClient.requestDeviceWifiScan());
-        binding.getStatus.setOnClickListener(view -> mBlufiClient.requestDeviceStatus());
     }
 
     public void initBluetooth() {
@@ -159,6 +157,9 @@ public class ConnectWifiActivity extends AppCompatActivity {
                 mBlufiClient = new BlufiClient(gatt, writeCharact, notifyCharact, new BlufiCallbackMain());
 
                 gatt.setCharacteristicNotification(notifyCharact, true);
+
+                //WIFI검색
+                mBlufiClient.requestDeviceWifiScan();
 
             } else {
                 Log.w(TAG, "onServicesDiscovered received: " + status);
@@ -268,6 +269,10 @@ public class ConnectWifiActivity extends AppCompatActivity {
                 case STATUS_SUCCESS:
                     Log.d("Blufi", String.format("Receive device status response:\n%s", response.generateValidInfo()));
                     Toast.makeText(getApplicationContext(), response.generateValidInfo(), Toast.LENGTH_SHORT).show();
+                    if (response.generateValidInfo().contains("Sta connect wifi now")) {
+                        Intent goMain = new Intent(ConnectWifiActivity.this, MainActivity.class);
+                        startActivity(goMain);
+                    }
                     break;
                 default:
                     Log.e("Blufi", "Device status response error");
