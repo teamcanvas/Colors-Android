@@ -48,7 +48,7 @@
                 android:id="@+id/search_device"
                 android:layout_width="230dp"
                 android:layout_height="64dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="32dp"
                 android:enabled="false"

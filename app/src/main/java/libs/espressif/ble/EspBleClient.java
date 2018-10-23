@@ -178,9 +178,7 @@ public class EspBleClient {
      */
     public void unregisterGattCallback(GattCallback callback) {
         synchronized (mUserCallbacks) {
-            if (mUserCallbacks.contains(callback)) {
-                mUserCallbacks.remove(callback);
-            }
+            mUserCallbacks.remove(callback);
         }
     }
 

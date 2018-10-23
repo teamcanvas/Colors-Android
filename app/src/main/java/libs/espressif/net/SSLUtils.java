@@ -46,13 +46,11 @@ public class SSLUtils {
             return true;
         }
 
-        public void checkServerTrusted(X509Certificate[] certs, String authType)
-                throws CertificateException {
+        public void checkServerTrusted(X509Certificate[] certs, String authType) {
             return;
         }
 
-        public void checkClientTrusted(X509Certificate[] certs, String authType)
-                throws CertificateException {
+        public void checkClientTrusted(X509Certificate[] certs, String authType) {
             return;
         }
     }
@@ -65,12 +63,10 @@ public class SSLUtils {
             return new java.security.cert.X509Certificate[]{};
         }
 
-        public void checkClientTrusted(X509Certificate[] chain, String authType)
-                throws CertificateException {
+        public void checkClientTrusted(X509Certificate[] chain, String authType) {
         }
 
-        public void checkServerTrusted(X509Certificate[] chain, String authType)
-                throws CertificateException {
+        public void checkServerTrusted(X509Certificate[] chain, String authType) {
         }
     }};
 

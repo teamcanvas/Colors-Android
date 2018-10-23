@@ -1188,7 +1188,7 @@ class BlufiClientImpl implements BlufiParameter {
         }
 
         if (!request) {
-            onDeviceScanResult(-1, Collections.emptyList());
+            onDeviceScanResult(-1, Collections.<BlufiScanResult>emptyList());
         }
     }
 

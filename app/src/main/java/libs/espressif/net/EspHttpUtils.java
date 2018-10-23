@@ -371,11 +371,7 @@ public class EspHttpUtils {
         if (bytes.get(size - 3) != '\n') {
             return false;
         }
-        if (bytes.get(size - 4) != '\r') {
-            return false;
-        }
-
-        return true;
+        return bytes.get(size - 4) == '\r';
     }
 
     private final static class ConstHeader extends EspHttpHeader {

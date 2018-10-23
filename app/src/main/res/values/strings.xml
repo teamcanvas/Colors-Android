@@ -20,9 +20,9 @@
     <string name="humidity">습도</string>
     <string name="select_wifi">select Wi-Fi</string>
     <string name="search_device">디바이스 검색하기</string>
-    <string name="configure_station_wifi_scanning">검색중...</string>
+    <string name="configure_station_wifi_scanning">검색중…</string>
     <string name="configure_station_wifi_scanning_nothing">검색결과 없음</string>
-    <string name="wifi_explain">디바이스의 통신을 위해 Wi-Fi에 연결합니다.\n연결을 위해 주변 Wi-Fi를 검색합니다.</string>
+    <string name="wifi_explain">디바이스의 통신을 위해 Wi-Fi에 연결합니다.\n연결을 위해 주변 Wi-Fi를 검색하는 중입니다.</string>
     <string name="connect_wifi">Wi-Fi 연결하기</string>
     <string name="wifi_configure">Wi-Fi에 대한 비밀번호 입력</string>
     <string name="hint_wifi_pw">Wi-Fi 비밀번호</string>
