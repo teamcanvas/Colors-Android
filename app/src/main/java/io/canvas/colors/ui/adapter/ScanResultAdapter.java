@@ -2,6 +2,7 @@ package io.canvas.colors.ui.adapter;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class ScanResultAdapter extends RecyclerView.Adapter<ScanResultViewHolder
             holder.binding.deviceName.setText(deviceName);
         } else {
             holder.binding.deviceName.setText(R.string.unknown_device);
-            //holder.binding.deviceAddress.setText(device.getAddress());
+            holder.binding.deviceName.setTextColor(Color.DKGRAY);
         }
 
         holder.itemView.setOnClickListener(view -> {
