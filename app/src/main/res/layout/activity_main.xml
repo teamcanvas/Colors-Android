@@ -105,11 +105,11 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:layout_width="110dp"
+                            android:layout_width="44dp"
                             android:layout_height="110dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:srcCompat="@drawable/waterdrop" />
+                            app:srcCompat="@drawable/temp" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -219,11 +219,11 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
+                            android:layout_width="106dp"
+                            android:layout_height="100dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:srcCompat="@drawable/airquality" />
+                            app:srcCompat="@drawable/dust_mask" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -387,7 +387,7 @@
                             android:layout_marginTop="18dp"
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/notosans_kr_medium"
-                            android:text="@string/barometer"
+                            android:text="@string/co2"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
