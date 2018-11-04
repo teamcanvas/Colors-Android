@@ -27,7 +27,7 @@
                 android:paddingRight="8dp"
                 android:text="mintboard_7360"
                 android:textColor="@color/fontColor"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <View
@@ -49,7 +49,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:rotation="90"
-                    android:src="@drawable/ic_import_export_24dp" />
+                    app:srcCompat="@drawable/ic_import_export_24dp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -63,6 +63,170 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:columnCount="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/temperature_gradient">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:text="@string/temperture"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvTemperture"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="12dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="26\u2103"
+                            android:textColor="@android:color/white"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/waterdrop" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/humidity_gradient">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:text="@string/humidity"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvHumidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="12dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="64%"
+                            android:textColor="@android:color/white"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/waterdrop" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/pm_gradient">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:text="@string/pm25"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/ug"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="@string/ug"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvPm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="10"
+                            android:textColor="@android:color/white"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/ug"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/airquality" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView"
@@ -100,6 +264,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/ppb"
                             android:textColor="@android:color/white"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -113,7 +278,7 @@
                             android:includeFontPadding="false"
                             android:text="96"
                             android:textColor="@android:color/white"
-                            android:textSize="40sp"
+                            android:textSize="36sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/ppb"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -124,6 +289,82 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:srcCompat="@drawable/airquality" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/barometer_gradient">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:text="@string/barometer"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/hpa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="@string/hpa"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvBarometer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="993"
+                            android:textColor="@android:color/white"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/hpa"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/barometer" />
+
+                        <TextView
+                            android:id="@+id/tvBarometer_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:text=".12"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toTopOf="@+id/hpa"
+                            app:layout_constraintStart_toEndOf="@+id/tvBarometer" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -163,6 +404,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/ppm"
                             android:textColor="@android:color/white"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -176,7 +418,7 @@
                             android:includeFontPadding="false"
                             android:text="173"
                             android:textColor="@android:color/white"
-                            android:textSize="40sp"
+                            android:textSize="36sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/ppm"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -189,149 +431,6 @@
                             app:srcCompat="@drawable/co2" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="10dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/barometer_gradient">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:text="@string/barometer"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/hpa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginBottom="24dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:includeFontPadding="false"
-                            android:text="@string/hpa"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvBarometer"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:includeFontPadding="false"
-                            android:text="993"
-                            android:textColor="@android:color/white"
-                            android:textSize="40sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/hpa"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <ImageView
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:srcCompat="@drawable/barometer" />
-
-                        <TextView
-                            android:id="@+id/tvBarometer_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:text=".12"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/hpa"
-                            app:layout_constraintStart_toEndOf="@+id/tvBarometer" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="10dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/humidity_gradient">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:text="@string/humidity"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvHumidity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginBottom="24dp"
-                            android:fontFamily="@font/notosans_kr_medium"
-                            android:includeFontPadding="false"
-                            android:text="64%"
-                            android:textColor="@android:color/white"
-                            android:textSize="40sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <ImageView
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:srcCompat="@drawable/waterdrop" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="10dp">
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="10dp">
-
                 </com.google.android.material.card.MaterialCardView>
             </GridLayout>
         </RelativeLayout>

@@ -26,4 +26,7 @@
     <string name="connect_wifi">Wi-Fi 연결하기</string>
     <string name="wifi_configure">Wi-Fi에 대한 비밀번호 입력</string>
     <string name="hint_wifi_pw">Wi-Fi 비밀번호</string>
+    <string name="temperture">온도</string>
+    <string name="pm25">PM2.5</string>
+    <string name="ug">ug/m3</string>
 </resources>

@@ -32,7 +32,7 @@ public class PairActivity extends AppCompatActivity {
     private boolean mScanning;
     private Handler mHandler;
     private static final int REQUEST_ENABLE_BT = 1;
-    // Stops scanning after 10 seconds.
+    // Stops scanning after 5 seconds.
     private static final long SCAN_PERIOD = 5000;
 
     private ArrayList<BluetoothDevice> mLeDevices;
