@@ -65,6 +65,7 @@
                 android:columnCount="2">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/temperatureCardview"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
                     android:layout_margin="8dp"

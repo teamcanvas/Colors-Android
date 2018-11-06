@@ -27,7 +27,7 @@
             android:name="android.max_aspect"
             android:value="2.1" />
 
-        <activity android:name=".ui.activities.WelcomeActivity">
+        <activity android:name=".ui.activities.TemperatureChartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,8 +37,8 @@
 
         <activity android:name=".ui.activities.PairActivity" />
         <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.DeviceControlActivity" />
         <activity android:name=".ui.activities.ConnectWifiActivity" />
+
 
         <service
             android:name=".service.BluetoothLeService"

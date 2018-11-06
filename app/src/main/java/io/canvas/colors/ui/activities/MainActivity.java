@@ -1,5 +1,6 @@
 package io.canvas.colors.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -19,5 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
         //binding.onlineCircle.setVisibility(View.GONE);
         binding.changeDevice.setOnClickListener(view-> Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show());
+        binding.temperatureCardview.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TemperatureChartActivity.class);
+            startActivity(intent);
+        });
     }
 }
